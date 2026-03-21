@@ -5,10 +5,10 @@
     "description": "API for managing my favorite travel spots",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "my-new-api-project-206i.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
@@ -71,6 +71,9 @@
           "201": {
             "description": "Created"
           },
+          "412": {
+            "description": "Precondition Failed"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -121,6 +124,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "412": {
+            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"

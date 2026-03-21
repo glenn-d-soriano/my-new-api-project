@@ -5,8 +5,8 @@ const doc = {
     title: 'Travel Destinations API',
     description: 'API for managing my favorite travel spots'
   },
-  host: 'localhost:3000',
-  schemes: ['http']
+  host: 'my-new-api-project-206i.onrender.com',
+  schemes: ['https']
 };
 
 const outputFile = './swagger.json';
