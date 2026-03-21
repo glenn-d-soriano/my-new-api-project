@@ -9,7 +9,7 @@ const getAll = async (req, res) => {
   });
 };
 
-// I added getSingle back in here for you just in case!
+// Added getSingle 
 const getSingle = async (req, res) => {
   const destinationId = new ObjectId(req.params.id);
   const result = await mongodb.getDb().db().collection('destinations').find({ _id: destinationId });
@@ -35,7 +35,7 @@ const createDestination = async (req, res) => {
   } else {
     res.status(500).json(response.error || 'Error occurred while creating the destination.');
   }
-}; // <--- Fixed this closing brace
+}; 
 
 const updateDestination = async (req, res) => {
   const destinationId = new ObjectId(req.params.id);
