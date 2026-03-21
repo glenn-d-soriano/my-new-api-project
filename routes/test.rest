@@ -1,0 +1,16 @@
+### UPDATE a destination (Replace YOUR_ID with the actual ID from Compass later)
+PUT http://localhost:3000/destinations/YOUR_ID_HERE
+Content-Type: application/json
+
+{
+  "name": "Batanes",
+  "country": "Philippines",
+  "description": "Updated: Still stunning, but even better in person!",
+  "bestTimeToVisit": "March to June",
+  "rating": 5,
+  "category": "Nature",
+  "mustSee": "Basco Lighthouse and Marlboro Hills"
+}
+
+### DELETE a destination
+DELETE http://localhost:3000/destinations/YOUR_ID_HERE

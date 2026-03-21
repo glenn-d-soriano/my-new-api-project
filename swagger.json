@@ -1,0 +1,71 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Travel Destinations API",
+    "description": "API for managing my favorite travel spots",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/destinations": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "country": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "bestTimeToVisit": {
+                  "example": "any"
+                },
+                "rating": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                },
+                "mustSee": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
