@@ -24,7 +24,7 @@ const getSingle = async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(lists[0]);
       } else {
-        res.status(404).json({ message: 'User not found.' });
+        res.status(400).json({ message: 'User not found.' });
       }
     });
   } catch (err) {
@@ -68,7 +68,7 @@ const updateUser = async (req, res) => {
     if (response.modifiedCount > 0) {
       res.status(204).send();
     } else {
-      res.status(404).json('User not found or no changes made.');
+      res.status(400).json('User not found or no changes made.');
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -83,7 +83,7 @@ const deleteUser = async (req, res) => {
     if (response.deletedCount > 0) {
       res.status(204).send();
     } else {
-      res.status(404).json('No user found with that ID to delete.');
+      res.status(400).json('No user found with that ID to delete.');
     }
   } catch (err) {
     res.status(500).json({ message: err.message });

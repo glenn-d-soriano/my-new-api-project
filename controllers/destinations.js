@@ -24,7 +24,7 @@ const getSingle = async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(lists[0]);
       } else {
-        res.status(404).json({ message: 'Destination not found.' });
+        res.status(400).json({ message: 'Destination not found.' });
       }
     });
   } catch (err) {
@@ -72,7 +72,7 @@ const updateDestination = async (req, res) => {
     if (response.modifiedCount > 0) {
       res.status(204).send();
     } else {
-      res.status(404).json('Document not found or no changes made.');
+      res.status(400).json('Document not found or no changes made.');
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -87,7 +87,7 @@ const deleteDestination = async (req, res) => {
     if (response.deletedCount > 0) {
       res.status(204).send();
     } else {
-      res.status(404).json('No document found with that ID to delete.');
+      res.status(400).json('No document found with that ID to delete.');
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
