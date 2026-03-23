@@ -14,6 +14,7 @@ routes.get('/', (req, res) => {
 
 // Destinations Routes (GET and DELETE)
 routes.get('/destinations', destController.getAll);
+routes.get('/destinations/:id', destController.getSingle);
 routes.delete('/destinations/:id', destController.deleteDestination);
 
 // Validation Rules applied to POST and PUT 
