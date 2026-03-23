@@ -20,7 +20,7 @@ const validate = (req, res, next) => {
     return next();
   }
   
-  // This formats the errors nicely for the browser/Swagger
+  // This formats the errors  for the browser/Swagger
   const extractedErrors = [];
   errors.array().map((err) => extractedErrors.push({ [err.path || err.param]: err.msg }));
 
