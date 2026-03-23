@@ -24,7 +24,8 @@ const validate = (req, res, next) => {
   const extractedErrors = [];
   errors.array().map((err) => extractedErrors.push({ [err.path || err.param]: err.msg }));
 
-  return res.status(412).json({
+    // Updated error from 412 to 400 to match rubric requirement
+  return res.status(400).json({
     success: false,
     message: 'Validation failed',
     errors: extractedErrors,

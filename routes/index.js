@@ -3,6 +3,9 @@ const destController = require('../controllers/destinations');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 const validation = require('../middleware/validate');
+//added 2nd controller user
+const userController = require('../controllers/users');
+const userValidation = require('../middleware/user-validate');
 
 // Home Route
 routes.get('/', (req, res) => {
@@ -31,5 +34,14 @@ routes.put(
 // Swagger Documentation 
 routes.use('/api-docs', swaggerUi.serve);
 routes.get('/api-docs', swaggerUi.setup(swaggerDocument));
+
+// User Routes
+routes.get('/users', userController.getAll);
+routes.post(
+  '/users', 
+  userValidation.userValidationRules(), 
+  userValidation.validate, 
+  userController.createUser
+);
 
 module.exports = routes;
