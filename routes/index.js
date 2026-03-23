@@ -31,17 +31,17 @@ routes.put(
   destController.updateDestination
 );
 
-// Swagger Documentation 
-routes.use('/api-docs', swaggerUi.serve);
-routes.get('/api-docs', swaggerUi.setup(swaggerDocument));
+
 
 // User Routes
 routes.get('/users', userController.getAll);
-routes.post(
-  '/users', 
-  userValidation.userValidationRules(), 
-  userValidation.validate, 
-  userController.createUser
-);
+routes.get('/users/:id', userController.getSingle);
+routes.post('/users', userValidation.userValidationRules(), userValidation.validate, userController.createUser);
+routes.put('/users/:id', userValidation.userValidationRules(), userValidation.validate, userController.updateUser);
+routes.delete('/users/:id', userController.deleteUser);
+
+// Swagger Documentation 
+routes.use('/api-docs', swaggerUi.serve);
+routes.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 module.exports = routes;
