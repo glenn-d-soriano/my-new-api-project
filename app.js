@@ -25,9 +25,9 @@ app
 
 // 2. CONFIGURE THE GITHUB STRATEGY (Must be BEFORE routes)
 passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK_URL
+    clientID: "Ov23lisqqwVqjpoJ9l3N", // Use the ID from your screenshot
+    clientSecret: "a78ffcfc67f7fffdd829d2dd99aa120af8b84465", // Use the Secret from your screenshot
+    callbackURL: "https://my-new-api-project-206i.onrender.com/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     return done(null, profile);
