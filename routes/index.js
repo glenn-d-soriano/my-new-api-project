@@ -59,7 +59,7 @@ routes.get('/logout', function(req, res, next) {
 });
 
 // 3. GitHub Callback Route
-routes.get('/github/callback', 
+routes.get('/auth/github/callback', 
   passport.authenticate('github', { failureRedirect: '/api-docs' }),
   (req, res) => {
     res.redirect('/api-docs'); // Redirect back to Swagger after login
