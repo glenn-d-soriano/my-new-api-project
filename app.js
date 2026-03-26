@@ -1,4 +1,6 @@
 require('dotenv').config();
+console.log("CLIENT_ID:", process.env.GITHUB_CLIENT_ID);
+console.log("CALLBACK_URL:", process.env.CALLBACK_URL);
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
