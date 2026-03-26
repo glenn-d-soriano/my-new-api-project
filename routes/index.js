@@ -48,10 +48,10 @@ routes.put('/users/:id', userValidation.userValidationRules(), userValidation.va
 routes.delete('/users/:id', userController.deleteUser);
 
 // 1. Login Route
-router.get('/login', passport.authenticate('github', { scope: [ 'user:email' ] }));
+routes.get('/login', passport.authenticate('github', { scope: [ 'user:email' ] }));
 
 // 2. Logout Route
-router.get('/logout', function(req, res, next) {
+routes.get('/logout', function(req, res, next) {
   req.logout(function(err) {
     if (err) { return next(err); }
     res.redirect('/');
@@ -59,7 +59,7 @@ router.get('/logout', function(req, res, next) {
 });
 
 // 3. GitHub Callback Route
-router.get('/github/callback', 
+routes.get('/github/callback', 
   passport.authenticate('github', { failureRedirect: '/api-docs' }),
   (req, res) => {
     res.redirect('/api-docs'); // Redirect back to Swagger after login
