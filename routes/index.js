@@ -60,11 +60,16 @@ routes.get('/logout', function(req, res, next) {
 
 // 3. GitHub Callback Route
 routes.get('/auth/github/callback', 
-  passport.authenticate('github', { failureRedirect: '/api-docs' }),
-    (req, res) => {
-        req.session.user = req.user;
-    res.redirect('/api-docs'); // Redirect back to Swagger after login
+  passport.authenticate('github', { 
+    failureRedirect: '/api-docs',
+    session: true 
+  }),
+  (req, res) => {
+    // Passport automatically attaches the user to req.user
+    req.session.user = req.user; 
+    res.redirect('/api-docs');
   }
+
 );
 
 // Swagger Documentation 
