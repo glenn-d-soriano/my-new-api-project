@@ -6,20 +6,25 @@ const validation = require('../middleware/validate');
 //added 2nd controller user
 const userController = require('../controllers/users');
 const userValidation = require('../middleware/user-validate');
+const passport = require('passport');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 // Home Route
 routes.get('/', (req, res) => {
   res.send('Travel Destinations API is Running! Go to /api-docs for documentation.');
 });
 
-// Destinations Routes (GET and DELETE)
+// Public Routes (Anyone can see these)
 routes.get('/destinations', destController.getAll);
 routes.get('/destinations/:id', destController.getSingle);
-routes.delete('/destinations/:id', destController.deleteDestination);
 
-// Validation Rules applied to POST and PUT 
+// Protected Routes (Must be logged in to access)
+// Note: isAuthenticated must come BEFORE validation and controller
+routes.delete('/destinations/:id', isAuthenticated, destController.deleteDestination);
+
 routes.post(
   '/destinations', 
+  isAuthenticated, // <--- Check login first
   validation.destinationValidationRules(), 
   validation.validate, 
   destController.createDestination
@@ -27,6 +32,7 @@ routes.post(
 
 routes.put(
   '/destinations/:id', 
+  isAuthenticated, // <--- Check login first
   validation.destinationValidationRules(), 
   validation.validate, 
   destController.updateDestination
@@ -40,6 +46,25 @@ routes.get('/users/:id', userController.getSingle);
 routes.post('/users', userValidation.userValidationRules(), userValidation.validate, userController.createUser);
 routes.put('/users/:id', userValidation.userValidationRules(), userValidation.validate, userController.updateUser);
 routes.delete('/users/:id', userController.deleteUser);
+
+// 1. Login Route
+router.get('/login', passport.authenticate('github', { scope: [ 'user:email' ] }));
+
+// 2. Logout Route
+router.get('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
+
+// 3. GitHub Callback Route
+router.get('/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/api-docs' }),
+  (req, res) => {
+    res.redirect('/api-docs'); // Redirect back to Swagger after login
+  }
+);
 
 // Swagger Documentation 
 routes.use('/api-docs', swaggerUi.serve);
