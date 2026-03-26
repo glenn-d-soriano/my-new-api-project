@@ -24,17 +24,7 @@ app
   .use(cors({ origin: '*' }))
   .use('/', require('./routes'));
 
-// Configure the GitHub Strategy
-passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK_URL
-  },
-  function(accessToken, refreshToken, profile, done) {
-    // Return for profile
-    return done(null, profile);
-  }
-));
+
 
 // Tell Passport how to "remember" the user
 passport.serializeUser((user, done) => { done(null, user); });
