@@ -14,7 +14,7 @@ routes.get('/', (req, res) => {
   res.send('Travel Destinations API is Running! Go to /api-docs for documentation.');
 });
 
-// Public Routes (Anyone can see these)
+// Public Routes 
 routes.get('/destinations', destController.getAll);
 routes.get('/destinations/:id', destController.getSingle);
 
@@ -24,7 +24,7 @@ routes.delete('/destinations/:id', isAuthenticated, destController.deleteDestina
 
 routes.post(
   '/destinations', 
-  isAuthenticated, // <--- Check login first
+  isAuthenticated, //Check login first
   validation.destinationValidationRules(), 
   validation.validate, 
   destController.createDestination
@@ -32,7 +32,7 @@ routes.post(
 
 routes.put(
   '/destinations/:id', 
-  isAuthenticated, // <--- Check login first
+  isAuthenticated, //Check login first
   validation.destinationValidationRules(), 
   validation.validate, 
   destController.updateDestination

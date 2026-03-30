@@ -5,7 +5,7 @@ const doc = {
     title: 'My New API Project',
     description: 'Destinations and Users API with OAuth',
   },
-  host: 'my-new-api-project-206i.onrender.com', // Your Render Link
+  host: 'my-new-api-project-206i.onrender.com', //  Render Link
   schemes: ['https'],
   // THIS PART IS KEY FOR THE RUBRIC:
   securityDefinitions: {
